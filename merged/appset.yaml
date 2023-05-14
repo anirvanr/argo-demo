@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appset-git-config
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/anirvanr/argo-demo.git
+        revision: merged
+        files:
+        - path: "config.json"
+  template:
+    metadata:
+      name: '{{name}}-{{namespace}}'
+    spec:
+      project: default
+      sources:
+        - repoURL: '{{repo}}'
+          targetRevision: '{{version}}'
+          chart: '{{name}}'
+          helm:
+            valueFiles:
+            - $values/argo-appset/{{namespace}}/{{name}}/values.yaml
+        - repoURL: 'https://github.com/anirvanr/argo-demo.git'
+          targetRevision: merged
+          ref: values
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
