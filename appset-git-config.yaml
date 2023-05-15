@@ -30,6 +30,7 @@ spec:
           targetRevision: '{{version}}'
           chart: '{{name}}'
           helm:
+            releaseName: '{{name}}'
             valueFiles:
             - $values/argo-appset/{{namespace}}/{{name}}/values.yaml
         - repoURL: 'https://github.com/anirvanr/argo-demo.git'
