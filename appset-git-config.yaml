@@ -9,17 +9,17 @@ spec:
         repoURL: https://github.com/anirvanr/argo-demo.git
         revision: main
         files:
-        - path: "argo-appset/dev/config.json"
+        - path: "argo-appset/dev/config.yaml"
     - git:
         repoURL: https://github.com/anirvanr/argo-demo.git
         revision: main
         files:
-        - path: "argo-appset/staging/config.json"
+        - path: "argo-appset/staging/config.yaml"
     - git:
         repoURL: https://github.com/anirvanr/argo-demo.git
         revision: main
         files:
-        - path: "argo-appset/prod/config.json"
+        - path: "argo-appset/prod/config.yaml"
   template:
     metadata:
       name: '{{name}}-{{namespace}}'
